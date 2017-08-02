@@ -1,0 +1,166 @@
+*{
+  margin:0;
+  padding: 0;
+}
+ul li{
+  list-style: none;
+}
+//public
+.flexBox{
+  //旧版本 box
+  display: box;
+  display: -webkit-box;
+  display: -moz-box;
+
+  //过渡 flexbox
+  display: -ms-flexbox;
+
+  //新 flex
+  display: -webkit-flex;
+  display: flex;
+}
+.flex(@flex){
+  -webkit-box-flex: @flex;
+  -moz-box-flex: @flex;
+
+  -ms-flex: @flex;
+
+  -webkit-flex: @flex;
+  flex:@flex;
+}
+//垂直方向
+.vertical{
+  -webkit-box-orient: vertical;
+  box-origin: vertical;
+
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+
+nav{
+  overflow: hidden;
+  a{
+    float: left;
+    width: 20%;
+    height: 40px;
+    line-height: 40px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 20px;
+    background: #ccc;
+    border-right: 2px solid black;
+    box-sizing: border-box;
+    color: #000;
+  }
+}
+
+.box{
+  .flexBox;
+  li{
+    .flex(1);
+    height:40px;
+    line-height: 40px;
+    background: deepskyblue;
+    text-align: center;
+    border-right: 2px solid black;
+    margin-bottom: 20px;
+  }
+}
+
+
+section{
+  .flexBox;
+  .left{
+    .flex(1);
+    height: 500px;
+    background: red;
+  }
+  .right{
+    .vertical;
+    .flexBox;
+    .flex(2);
+    height: 500px;
+    background: darkblue;
+    .top{
+      height: 250px;
+      background: #0cf930;
+    }
+    .bot{
+      height: 250px;
+      background: yellow;
+      .flexBox;
+      .bot-left{
+        .flex(3);
+        background: blueviolet;
+      }
+      .bot-right{
+        .flex(2);
+        background: pink;
+      }
+    }
+  };
+}
+
+
+//弹性盒模型的扩展比率
+.flexUl{
+  width: 600px;
+  .flexBox;
+  li{
+    width: 100px;
+    &:nth-child(1){
+      height: 40px;
+      background: red;
+    };
+    &:nth-child(2){
+      flex-grow: 1;
+      height: 40px;
+      width: 50px;
+      background: blue;
+    };
+    &:nth-child(3){
+      flex-grow: 3;
+      height: 40px;
+      width: 50px;
+      background: yellow;
+    }
+  }
+
+}
+
+
+/*
+*    total  li(1)  li(2)  li(3)
+*    600    100     50     50    =剩400
+*               50+400*1/4
+*/
+
+
+
+//收缩比
+
+.shrink{
+  width: 600px;
+  .flexBox;
+  li{
+    &:nth-child(1){
+      flex-shrink: 1;
+      width: 300px;
+      background: red;
+    };
+    &:nth-child(2){
+      flex-shrink: 2;
+      width: 400px;
+      background: blue;
+    };
+    &:nth-child(3){
+      flex-shrink: 3;
+      width: 500px;
+      background: yellow;
+    }
+  }
+}
+
+
+
+
